@@ -1,0 +1,4 @@
+<!-- imagePath 변수에 현재페이지의 날짜-타이틀형태의 디렉토리위치를 저장한다 -->
+{% capture imagePath %}/assets/img/posts/{{ page.date | date: "%Y-%m-%d" }}-{{ page.title | slugify }}{% endcapture %}
+
+
