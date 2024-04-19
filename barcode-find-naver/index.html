@@ -6,13 +6,14 @@
 </head>
 <body>
 	<script >
+	
 	const barcode = document.location.hash.replaceAll('#','');
 	const queryString = window.location.search.slice(1);
+	let hrefQuery = {}
 	if(queryString){
 		hrefQuery = JSON.parse('{"' + decodeURI(queryString.replace(/&/g, "\",\"").replace(/=/g,"\":\"")) + '"}');
-	}else {
-		hrefQuery = {};
 	}
+	
 	fetch(`https://gs1.koreannet.or.kr/pr/${barcode}`, {
 	  "method": "GET",
 	  "mode": "cors",
@@ -20,17 +21,16 @@
 	}).then(d=>{
 		d.text().then(d1=>{
 		   const text = d1.replace(/[\r\n\t]/g,"").replace(/^.*<h3>(.+)<\/h3>.*$/,'$1');
-       let quuery = encodeURIComponent(text);
+		   let query = encodeURIComponent(text);
 		   if(text.length > 1000){
-				   quuery = barcode;
+				query = barcode;
 		   }
-		   
-		   if(queryString.site === 'danawa'){
-				location.href =	`https://search.danawa.com/mobile/dsearch.php?keyword=${quuery}&sort=priceASC`
-		   }else if(queryString.site === 'coupang'){
-				location.href = `https://m.coupang.com/nm/search?q=${quuery}`;
+		   if(hrefQuery.site === 'danawa'){
+				location.href =	`https://search.danawa.com/mobile/dsearch.php?keyword=${query}&sort=priceASC`
+		   }else if(hrefQuery.site === 'coupang'){
+				location.href = `https://m.coupang.com/nm/search?q=${query}`;
 		   }else {
-				location.href = `https://msearch.shopping.naver.com/search/all?query=${quuery}&sort=price_asc`;
+				location.href = `https://msearch.shopping.naver.com/search/all?query=${query}&sort=price_asc`;
 		   };
 		})
 	})
