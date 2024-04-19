@@ -25,9 +25,9 @@
 				   quuery = barcode;
 		   }
 		   
-		   if(hrefquery.site === 'danawa'){
+		   if(queryString.site === 'danawa'){
 				location.href =	`https://search.danawa.com/mobile/dsearch.php?keyword=${quuery}&sort=priceASC`
-		   }else if(hrefquery.site === 'coupang'){
+		   }else if(queryString.site === 'coupang'){
 				location.href = `https://m.coupang.com/nm/search?q=${quuery}`;
 		   }else {
 				location.href = `https://msearch.shopping.naver.com/search/all?query=${quuery}&sort=price_asc`;
