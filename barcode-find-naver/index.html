@@ -22,11 +22,11 @@
 		d.text().then(d1=>{
 		   const text = d1.replace(/[\r\n\t]/g,"").replace(/^.*<h3>(.+)<\/h3>.*$/,'$1');
 		   query = encodeURIComponent(text);
-		   if(text.length > 1000){
+		   if(text.length > 500){
 				query = barcode;
 		   }
 		   query = query.replace(/_/g,' ');
-		   
+		   document.querySelector('#pdname').textContent = query||'바코드정보 없음!!';
 		   if(hrefQuery.site === 'danawa'){
 				goDanawa();
 		   }else if(hrefQuery.site === 'coupang'){
@@ -50,7 +50,9 @@
 	}
 	</script>
 </body>
+
 <div style="transform: scale(3);transform-origin: top; text-align: center;">
+	<h1 id="pdname"></h1>
 	<button type="button" onclick="goKoreanNet()">코리안넷 상품정보</button>
 	<br><br>
 	<button type="button" onclick="goNaver()">네이버 쇼핑정보</button>
