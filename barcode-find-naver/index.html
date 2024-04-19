@@ -7,8 +7,12 @@
 <body>
 	<script >
 	const barcode = document.location.hash.replaceAll('#','');
-	var queryString = window.location.search.slice(1);
-	const hrefquery = queryString && JSON.parse('{"' + decodeURI(queryString.replace(/&/g, "\",\"").replace(/=/g,"\":\"")) + '"}');
+	const queryString = window.location.search.slice(1);
+	if(queryString){
+		hrefQuery = JSON.parse('{"' + decodeURI(queryString.replace(/&/g, "\",\"").replace(/=/g,"\":\"")) + '"}');
+	}else {
+		hrefQuery = {};
+	}
 	fetch(`https://gs1.koreannet.or.kr/pr/${barcode}`, {
 	  "method": "GET",
 	  "mode": "cors",
