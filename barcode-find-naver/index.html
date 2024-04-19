@@ -26,7 +26,7 @@
 				query = barcode;
 		   }
 		   query = query.replace(/_/g,' ');
-		   document.querySelector('#pdname').textContent = query||'바코드정보 없음!!';
+		   document.querySelector('#pdname').textContent = decodeURIComponent(query)||'바코드정보 없음!!';
 		   if(hrefQuery.site === 'danawa'){
 				goDanawa();
 		   }else if(hrefQuery.site === 'coupang'){
