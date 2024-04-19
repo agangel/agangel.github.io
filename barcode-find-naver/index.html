@@ -1,13 +1,24 @@
-<script>
-fetch("https://gs1.koreannet.or.kr/pr/8801005001601", {
-  "method": "GET",
-  "mode": "cors",
-  "withCredentials": false
-}).then(d=>{
-    d.text().then(d1=>{
-       const text = d1.replace(/[\r\n\t]/g,"").replace(/^.*<h3>(.+)<\/h3>.*$/,'$1');
-	   console.log(text)
-	   debugger;
+<html>
+<head>
+	<title>바코드로 네이버쇼핑 쫒기</title>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+</head>
+<body>
+	<script >
+	const barcode = document.location.hash.replaceAll('#','');
+	fetch(`https://gs1.koreannet.or.kr/pr/{barcode}`, {
+	  "method": "GET",
+	  "mode": "cors",
+	  "withCredentials": false
+	}).then(d=>{
+		d.text().then(d1=>{
+		   const text = d1.replace(/[\r\n\t]/g,"").replace(/^.*<h3>(.+)<\/h3>.*$/,'$1');
+		   console.log(text)
+		   let quuery = encodeURIComponent(text);
+		   location.href = `https://msearch.shopping.naver.com/search/all?query={quuery}`;
+		})
 	})
-})
-</script>
+	</script>
+</body>
+</html>
