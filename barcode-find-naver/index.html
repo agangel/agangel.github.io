@@ -15,11 +15,14 @@
 		d.text().then(d1=>{
 		   const text = d1.replace(/[\r\n\t]/g,"").replace(/^.*<h3>(.+)<\/h3>.*$/,'$1');
 		   debugger;
+       let query = '';
        if(text.length > 1000){
-				quuery = barcode;
-		   }
-		   let quuery = encodeURIComponent(text);
-		   location.href = `https://msearch.shopping.naver.com/search/all?query=${quuery}`;
+			    query = barcode;
+		   }else {
+          query = encodeURIComponent(text);
+       }
+		   
+		   location.href = `https://msearch.shopping.naver.com/search/all?query=${query}`;
 		})
 	})
 	</script>
