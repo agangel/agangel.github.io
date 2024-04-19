@@ -20,10 +20,11 @@
 	}).then(d=>{
 		d.text().then(d1=>{
 		   const text = d1.replace(/[\r\n\t]/g,"").replace(/^.*<h3>(.+)<\/h3>.*$/,'$1');
+       let quuery = encodeURIComponent(text);
 		   if(text.length > 1000){
-				quuery = barcode;
+				   quuery = barcode;
 		   }
-		   let quuery = encodeURIComponent(text);
+		   
 		   if(hrefquery.site === 'danawa'){
 				location.href =	`https://search.danawa.com/mobile/dsearch.php?keyword=${quuery}&sort=priceASC`
 		   }else if(hrefquery.site === 'coupang'){
