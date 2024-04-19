@@ -7,7 +7,7 @@
 <body>
 	<script >
 	const barcode = document.location.hash.replaceAll('#','');
-	fetch(`https://gs1.koreannet.or.kr/pr/{barcode}`, {
+	fetch(`https://gs1.koreannet.or.kr/pr/${barcode}`, {
 	  "method": "GET",
 	  "mode": "cors",
 	  "withCredentials": false
@@ -16,7 +16,7 @@
 		   const text = d1.replace(/[\r\n\t]/g,"").replace(/^.*<h3>(.+)<\/h3>.*$/,'$1');
 		   debugger;
 		   let quuery = encodeURIComponent(text);
-		   location.href = `https://msearch.shopping.naver.com/search/all?query={quuery}`;
+		   location.href = `https://msearch.shopping.naver.com/search/all?query=${quuery}`;
 		})
 	})
 	</script>
