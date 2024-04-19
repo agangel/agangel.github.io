@@ -6,10 +6,9 @@
 </head>
 <body>
 	<script >
-	// https://agangel.github.io/barcode-find-naver/index.html#88010050016011
 	const barcode = document.location.hash.replaceAll('#','');
 	var queryString = window.location.search.slice(1);
-	const hrefquery = JSON.parse('{"' + decodeURI(queryString.replace(/&/g, "\",\"").replace(/=/g,"\":\"")) + '"}');
+	const hrefquery = queryString && JSON.parse('{"' + decodeURI(queryString.replace(/&/g, "\",\"").replace(/=/g,"\":\"")) + '"}');
 	fetch(`https://gs1.koreannet.or.kr/pr/${barcode}`, {
 	  "method": "GET",
 	  "mode": "cors",
